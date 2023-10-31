@@ -4,13 +4,13 @@
 <%@ page import="constants.ForwardConst" %>
 
 <c:set var="action" value="${ForwardConst.ACT_EMP.getValue()}" />
-<c:set var="comIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
+<c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
 
 <c:if test="${errors != null}">
     <div id="flush_error">
         入力内容にエラーがあります。<br />
         <c:forEach var="error" items="${errors}">
-            ・<c:out value="{error}" /><br />
+            ・<c:out value="${error}" /><br />
         </c:forEach>
 
     </div>
@@ -34,7 +34,7 @@
 </select>
 <br /><br />
 <input type="hidden" name="${AttributeConst.EMP_ID.getValue()}" value="${employee.id}" />
-<input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="{_token}" />
+<input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
 <button type="submit">投稿</button>
 
 
