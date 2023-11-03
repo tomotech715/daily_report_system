@@ -65,27 +65,3 @@ public class ReportValidator {
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -89,8 +89,6 @@ public class LoginFilter implements Filter {
                     }else if (ForwardConst.CMD_LOGOUT.getValue().equals(command)) {
                         //ログアウトの実施は許可
 
-                    }else if (ForwardConst.CMD_LOGOUT.getValue().equals(command)) {
-                        //ログアウトの実施は許可
 
                     }else {
                         //上記以外の認証系Actionはエラー画面
@@ -117,34 +115,5 @@ public class LoginFilter implements Filter {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
