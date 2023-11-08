@@ -27,6 +27,7 @@ public interface JpaConst {
 
     int ROLE_ADMIN = 1;
     int ROLE_GENERAL = 0;
+    int ROLE_MANAGER =2;
     int EMP_DEL_TRUE = 1;
     int EMP_DEL_FALSE = 0;
 

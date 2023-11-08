@@ -36,6 +36,7 @@ public enum AttributeConst {
     //管理者フラグ
     ROLE_ADMIN(1),
     ROLE_GENERAL(0),
+    ROLE_MANAGER(2),
 
     //削除フラグ
     DEL_FLAG_TRUE(1),
