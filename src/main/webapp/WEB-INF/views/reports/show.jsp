@@ -46,6 +46,12 @@
             </p>
         </c:if>
 
+        <c:if test="${sessionScope.login_employee.adminFlag == 2}">
+            <p>
+                <a href="<c:url value='?action=${actRep}&command=${commIdx}' />">この日報を承認する</a>
+            </p>
+        </c:if>
+
         <p>
             <a href="<c:url value='?action=${actRep}&command=${commIdx}' />">一覧に戻る</a>
         </p>
