@@ -43,6 +43,10 @@ public interface JpaConst {
     String REP_COL_CONTENT = "content";
     String REP_COL_CREATED_AT = "created_at";
     String REP_COL_UPDATED_AT = "updated_at";
+    String REP_COL_APPROVAL_FLAG = "approval_flag";
+
+    int REP_AP_TRUE = 1; //承認フラグON（承認済み）
+    int REP_AP_FALSE = 0; //承認フラグOFF（未承認）
 
     //Entity名
     String ENTITY_EMP = "employee";

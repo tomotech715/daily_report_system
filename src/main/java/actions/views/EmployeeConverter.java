@@ -41,7 +41,7 @@ public class EmployeeConverter {
                 ev.getUpdatedAt(),
                 ev.getDeleteFlag() == null
                         ? null
-                        :ev.getDeleteFlag() == AttributeConst.DEL_FLAG_TRUE.getIntegerValue()
+                        : ev.getDeleteFlag() == AttributeConst.DEL_FLAG_TRUE.getIntegerValue()
                                 ? JpaConst.EMP_DEL_TRUE
                                 : JpaConst.EMP_DEL_FALSE);
     }

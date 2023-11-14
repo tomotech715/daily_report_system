@@ -113,7 +113,8 @@ public class ReportAction extends ActionBase {
                     getRequestParam(AttributeConst.REP_TITLE),
                     getRequestParam(AttributeConst.REP_CONTENT),
                     null,
-                    null);
+                    null,
+                    AttributeConst.AP_FLAG_FALSE.getIntegerValue());
 
             //日報情報登録
             List<String> errors = service.create(rv);
@@ -147,6 +148,9 @@ public class ReportAction extends ActionBase {
      * @throws IOException
      */
     public void show() throws ServletException, IOException {
+
+
+        putRequestScope(AttributeConst.TOKEN, getTokenId());
 
         //idを条件に日報データを取得する
         ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
@@ -229,6 +233,20 @@ public class ReportAction extends ActionBase {
             redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
         }
     }
+
+    public void approval() throws ServletException, IOException {
+
+        if (checkToken()) {
+
+            service.approval(toNumber(getRequestParam(AttributeConst.REP_ID)));
+
+            putSessionScope(AttributeConst.FLUSH, MessageConst.I_APPROVAL.getMessage());
+
+            redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
+        }
+    }
+
+
 
 }
 

@@ -81,7 +81,7 @@ public class Report {
      */
     @Lob
     @Column(name = JpaConst.REP_COL_CONTENT, nullable = false)
-    private String Content;
+    private String content;
 
     /**
      * 登録日時
@@ -94,6 +94,13 @@ public class Report {
      */
     @Column(name = JpaConst.REP_COL_UPDATED_AT, nullable = false)
     private LocalDateTime updatedAt;
+
+    /**
+     * 承認された日報かどうか（未承認:0、承認済み:1)
+     */
+    @Column(name = JpaConst.REP_COL_APPROVAL_FLAG, nullable = false)
+    private Integer approvalFlag;
+
 
 }
 

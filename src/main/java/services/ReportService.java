@@ -89,6 +89,7 @@ public class ReportService extends ServiceBase {
             LocalDateTime ldt = LocalDateTime.now();
             rv.setCreatedAt(ldt);
             rv.setUpdatedAt(ldt);
+            rv.setApprovalFlag(null);
             createInternal(rv);
         }
 
@@ -112,6 +113,7 @@ public class ReportService extends ServiceBase {
             //更新日時を現在時刻に設定
             LocalDateTime ldt = LocalDateTime.now();
             rv.setUpdatedAt(ldt);
+            rv.setApprovalFlag(rv.getApprovalFlag());
 
             updateInternal(rv);
         }
@@ -151,6 +153,21 @@ public class ReportService extends ServiceBase {
         Report r = findOneInternal(rv.getId());
         ReportConverter.copyViewToModel(r, rv);
         em.getTransaction().commit();
+    }
+
+
+
+    public void approval(Integer id) {
+
+        ReportView rv = findOne(id);
+
+        LocalDateTime today = LocalDateTime.now();
+        rv.setUpdatedAt(today);
+
+        rv.setApprovalFlag(JpaConst.REP_AP_TRUE);
+
+        update(rv);
+
     }
 
 
