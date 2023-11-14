@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="constants.ForwardConst" %>
+<%@ page import="constants.AttributeConst" %>
 
 <c:set var="actRep" value="${ForwardConst.ACT_REP.getValue()}" />
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
@@ -33,7 +34,18 @@
                         <td class="report_date"><fmt:formatDate value='${reportDay}' pattern='yyyy-MM-dd' /></td>
                         <td class="report_title">${report.title}</td>
                         <td class="report_action"><a href="<c:url value='?action=${actRep}&command=${commShow}&id=${report.id}' />">詳細を見る</a></td>
-                   <!--<td class="approval_flag"><a href="<c:url value='?action=${actRep}&command=${commShow}&id=${report.id}' />">承認済み</a></td>-->
+
+                        <td>
+                            <c:choose>
+                                <c:when test="${report.approvalFlag == AttributeConst.AP_FLAG_TRUE.getIntegerValue()}">
+                                    承認済み
+                                </c:when>
+                                <c:otherwise>
+                                    <a href="<c:url value='?action=${actRep}&command=${commShow}&id=${report.id}' />">未承認</a>
+                                </c:otherwise>
+                            </c:choose>
+
+                        </td>
                     </tr>
                 </c:forEach>
             </tbody>
