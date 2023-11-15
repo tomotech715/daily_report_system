@@ -89,7 +89,7 @@ public class ReportService extends ServiceBase {
             LocalDateTime ldt = LocalDateTime.now();
             rv.setCreatedAt(ldt);
             rv.setUpdatedAt(ldt);
-            rv.setApprovalFlag(null);
+            rv.setApprovalFlag(0);
             createInternal(rv);
         }
 
