@@ -246,6 +246,18 @@ public class ReportAction extends ActionBase {
         }
     }
 
+    public void approvalcancel() throws ServletException, IOException {
+
+        if (checkToken()) {
+
+            service.approvalcancel(toNumber(getRequestParam(AttributeConst.REP_ID)));
+
+            putSessionScope(AttributeConst.FLUSH, MessageConst.I_APPROVALCANCEL.getMessage());
+
+            redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
+        }
+    }
+
 
 
 }

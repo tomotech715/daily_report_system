@@ -9,12 +9,14 @@
 <c:set var="commEdt" value="${ForwardConst.CMD_EDIT.getValue()}" />
 <c:set var="empAdf" value="${AttributeConst.ROLE_MANAGER.getValue()}" />
 <c:set var="repAp"   value="${ForwardConst.CMD_APPROVAL.getValue()}" />
+<c:set var="repApCan" value="${ForwardConst.CMD_APPROVALCANCEL.getValue()}" />
 
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
 
         <h2>日報 詳細ページ</h2>
+        <c:if test="${report.approvalFlag == AttributeConst.AP_FLAG_TRUE.getIntegerValue()}"><b style="color:red;">承認済み</b></c:if>
 
         <table>
             <tbody>
@@ -30,9 +32,7 @@
                 </tr>
                 <tr>
                     <th>内容</th>
-                    <td><pre>
-                            <c:out value="${report.content}" />
-                        </pre></td>
+                    <td><pre><c:out value="${report.content}" /></pre></td>
                 </tr>
                 <tr>
                     <th>登録日時</th>
@@ -58,7 +58,8 @@
             </p>
         </c:if>
 
-        <c:if test="${sessionScope.login_employee.adminFlag == 2}">
+
+        <c:if test="${sessionScope.login_employee.adminFlag == AttributeConst.ROLE_MANAGER.getIntegerValue() && report.approvalFlag == AttributeConst.AP_FLAG_FALSE.getIntegerValue()}">
             <p>
                 <a href="#" onclick="confirmApproval();">この日報を承認する</a>
             </p>
@@ -72,6 +73,25 @@
             function confirmApproval() {
                 if (confirm("承認しますか？")) {
                     document.forms[0].submit();
+                }
+            }
+        </script>
+
+
+        <c:if test="${sessionScope.login_employee.adminFlag == AttributeConst.ROLE_MANAGER.getIntegerValue() && report.approvalFlag == AttributeConst.AP_FLAG_TRUE.getIntegerValue()}">
+            <p>
+                <a href="#" onclick="confirmApprovalCancel();">日報の承認を取り消す</a>
+            </p>
+        </c:if>
+        <form method="POST"
+            action="<c:url value='?action=${actRep}&command=${repApCan}' />">
+            <input type="hidden" name="${AttributeConst.REP_ID.getValue()}" value="${report.id}" />
+            <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
+        </form>
+        <script>
+            function confirmApprovalCancel() {
+                if (confirm("承認を取り消しますか？")) {
+                    document.forms[1].submit();
                 }
             }
         </script>

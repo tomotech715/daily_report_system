@@ -170,6 +170,19 @@ public class ReportService extends ServiceBase {
 
     }
 
+    public void approvalcancel(Integer id) {
+
+        ReportView rv = findOne(id);
+
+        LocalDateTime today = LocalDateTime.now();
+        rv.setUpdatedAt(today);
+
+        rv.setApprovalFlag(JpaConst.REP_AP_FALSE);
+
+        update(rv);
+
+    }
+
 
 }
 
